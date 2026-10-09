@@ -1,0 +1,98 @@
+[
+  {
+    "id": "https://arxiv.org/abs/2210.03629",
+    "url": "https://arxiv.org/abs/2210.03629",
+    "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+    "date": "2023-03-10",
+    "source": "web",
+    "n": 1
+  },
+  {
+    "n": 2,
+    "id": "https://proceedings.neurips.cc/paper_files/paper/2023/file/d842425e4bf79ba039352da0f658a906-Paper-Conference.pdf",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/d842425e4bf79ba039352da0f658a906-Paper-Conference.pdf",
+    "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+    "date": "undated",
+    "source": "web"
+  },
+  {
+    "n": 3,
+    "id": "2503.04625",
+    "url": "https://huggingface.co/papers/2503.04625",
+    "title": "START: Self-taught Reasoner with Tools",
+    "date": "2025-03-06",
+    "source": "hf-daily"
+  },
+  {
+    "n": 4,
+    "id": "https://arxiv.org/abs/2401.17167",
+    "url": "https://arxiv.org/abs/2401.17167",
+    "title": "Planning, Creation, Usage: Benchmarking LLMs for Comprehensive Tool Utilization in Real-World Complex Scenarios",
+    "date": "2024-06-03",
+    "source": "web"
+  },
+  {
+    "n": 5,
+    "id": "https://proceedings.neurips.cc/paper_files/paper/2024/file/8a75ee6d4b2eb0b777f549a32a5a5c28-Paper-Datasets_and_Benchmarks_Track.pdf",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/8a75ee6d4b2eb0b777f549a32a5a5c28-Paper-Datasets_and_Benchmarks_Track.pdf",
+    "title": "GTA: A Benchmark for General Tool Agents",
+    "date": "undated",
+    "source": "web"
+  },
+  {
+    "id": "https://arxiv.org/abs/2408.04682",
+    "url": "https://arxiv.org/abs/2408.04682",
+    "title": "ToolSandbox: A Stateful, Conversational, Interactive Evaluation Benchmark for LLM Tool Use Capabilities",
+    "date": "undated",
+    "source": "web",
+    "n": 6
+  },
+  {
+    "n": 7,
+    "id": "2504.08942",
+    "url": "https://huggingface.co/papers/2504.08942",
+    "title": "AgentRewardBench: Evaluating Automatic Evaluations of Web Agent Trajectories",
+    "date": "2025-04-11",
+    "source": "hf-search"
+  },
+  {
+    "n": 8,
+    "id": "2508.07575",
+    "url": "https://huggingface.co/papers/2508.07575",
+    "title": "MCPToolBench++: A Large Scale AI Agent Model Context Protocol MCP Tool Use Benchmark",
+    "date": "2025-08-11",
+    "source": "hf-search"
+  },
+  {
+    "n": 9,
+    "id": "https://arxiv.org/html/2406.05804",
+    "url": "https://arxiv.org/html/2406.05804",
+    "title": "A Review of Prominent Paradigms for LLM-Based Agents: Tool Use (Including RAG), Planning, and Feedback Learning",
+    "date": "undated",
+    "source": "web"
+  },
+  {
+    "id": "https://arxiv.org/html/2604.00835",
+    "url": "https://arxiv.org/html/2604.00835",
+    "title": "Agentic Tool Use in Large Language Models: A Survey",
+    "date": "2026-06-29",
+    "source": "web",
+    "n": 10
+  },
+  {
+    "n": 11,
+    "id": "2605.09252",
+    "url": "https://huggingface.co/papers/2605.09252",
+    "title": "LLM Agents Already Know When to Call Tools -- Even Without Reasoning",
+    "date": "2026-05-10",
+    "source": "hf-search"
+  },
+  {
+    "n": 12,
+    "id": "2605.27995",
+    "url": "https://huggingface.co/papers/2605.27995",
+    "title": "AsyncTool: Evaluating the Asynchronous Function Calling Capability under Multi-Task Scenarios",
+    "date": "2026-05-27",
+    "source": "hf-search"
+  }
+]

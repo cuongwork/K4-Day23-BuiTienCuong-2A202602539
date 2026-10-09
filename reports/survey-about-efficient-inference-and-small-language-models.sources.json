@@ -1,0 +1,82 @@
+[
+  {
+    "n": 1,
+    "id": "2402.09748",
+    "url": "https://arxiv.org/abs/2402.09748",
+    "title": "Model Compression and Efficient Inference for Large Language Models: A Survey",
+    "date": "2024-02-15",
+    "source": "arxiv"
+  },
+  {
+    "n": 2,
+    "id": "2401.07851",
+    "url": "https://huggingface.co/papers/2401.07851",
+    "title": "Unlocking Efficiency in Large Language Model Inference: A Comprehensive Survey of Speculative Decoding",
+    "date": "2024-01-15",
+    "source": "hf-search"
+  },
+  {
+    "n": 3,
+    "id": "2411.13157",
+    "url": "https://huggingface.co/papers/2411.13157",
+    "title": "Closer Look at Efficient Inference Methods: A Survey of Speculative Decoding",
+    "date": "2024-11-20",
+    "source": "hf-search"
+  },
+  {
+    "n": 4,
+    "id": "2410.20011",
+    "url": "https://huggingface.co/papers/2410.20011",
+    "title": "A Survey of Small Language Models",
+    "date": "2024-10-25",
+    "source": "hf-search"
+  },
+  {
+    "n": 5,
+    "id": "https://arxiv.org/abs/2409.15790",
+    "url": "https://arxiv.org/abs/2409.15790",
+    "title": "Small Language Models:Survey, Measurements, and Insights",
+    "date": "2025-02-26",
+    "source": "web"
+  },
+  {
+    "n": 6,
+    "id": "https://aclanthology.org/anthology-files/anthology-files/pdf/acl/2025.acl-long.718.pdf",
+    "url": "https://aclanthology.org/anthology-files/anthology-files/pdf/acl/2025.acl-long.718.pdf",
+    "title": "Demystifying Small Language Models for Edge Deployment",
+    "date": "undated",
+    "source": "web"
+  },
+  {
+    "n": 7,
+    "id": "2402.14905",
+    "url": "https://huggingface.co/papers/2402.14905",
+    "title": "MobileLLM: Optimizing Sub-billion Parameter Language Models for On-Device Use Cases",
+    "date": "2024-02-22",
+    "source": "hf-daily"
+  },
+  {
+    "n": 8,
+    "id": "https://proceedings.mlr.press/v235/liu24ce.html",
+    "url": "https://proceedings.mlr.press/v235/liu24ce.html",
+    "title": "MobileLLM: Optimizing Sub-billion Parameter Language Models for On-Device Use Cases",
+    "date": "2024-07-08",
+    "source": "web"
+  },
+  {
+    "n": 9,
+    "id": "https://dl.acm.org/doi/10.1145/3600006.3613165",
+    "url": "https://dl.acm.org/doi/10.1145/3600006.3613165",
+    "title": "Efficient Memory Management for Large Language Model ...",
+    "date": "2023-10-23",
+    "source": "web"
+  },
+  {
+    "n": 10,
+    "id": "1910.01108",
+    "url": "https://huggingface.co/papers/1910.01108",
+    "title": "DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter",
+    "date": "2019-10-02",
+    "source": "hf-search"
+  }
+]

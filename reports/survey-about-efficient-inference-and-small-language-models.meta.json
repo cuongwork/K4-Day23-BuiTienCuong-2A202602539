@@ -1,0 +1,51 @@
+{
+  "topic": "survey about efficient inference and small language models",
+  "model": "openai:gpt-5.4-mini",
+  "elapsed_s": 140.8,
+  "subagent_calls": 10,
+  "researcher_calls": 3,
+  "citation_checker_calls": 7,
+  "tool_calls": {
+    "write_todos": 2,
+    "task": 10,
+    "read_file": 4,
+    "ls": 1,
+    "write_file": 3,
+    "execute": 4,
+    "edit_file": 4
+  },
+  "tokens": {
+    "input": 280815,
+    "output": 6709
+  },
+  "n_sources": 10,
+  "source_families": [
+    "arxiv",
+    "hf-daily",
+    "hf-search",
+    "web"
+  ],
+  "citation_audit": [
+    {
+      "claim": "The paper abstract describes deep and thin architectures with embedding sharing and grouped-query attention for mobile deployment [7][8].",
+      "url": "https://proceedings.mlr.press/v235/liu24ce.html",
+      "verdict": "SUPPORTED",
+      "evidence": "The abstract states: \"We focus on designing top-quality LLMs with fewer than a billion parameters, a practical choice for mobile deployment... Leveraging deep and thin architectures, coupled with embedding sharing and grouped-query attention mechanisms...\"",
+      "correction": ""
+    },
+    {
+      "claim": "Recent surveys, including this one, evaluate capabilities such as commonsense reasoning, mathematics, in-context learning, and long context, and benchmark on-device runtime costs such as inference latency and memory footprints [5].",
+      "url": "https://arxiv.org/abs/2409.15790",
+      "verdict": "SUPPORTED",
+      "evidence": "The abstract states: \"In addition, we evaluate their capabilities in various domains, including commonsense reasoning, mathematics, in-context learning, and long context. To gain further insight into their on-device runtime costs, we benchmark their inference latency and memory footprints.\"",
+      "correction": ""
+    },
+    {
+      "claim": "The PagedAttention paper proposes an attention algorithm inspired by virtual memory and paging that reduces KV-cache waste and fragmentation [9].",
+      "url": "https://dl.acm.org/doi/10.1145/3600006.3613165",
+      "verdict": "SUPPORTED",
+      "evidence": "Abstract states: \"we propose PagedAttention, an attention algorithm inspired by the classical virtual memory and paging techniques in operating systems.\" It also says KV cache memory \"can be significantly wasted by fragmentation and redundant duplication\" and that vLLM achieves \"near-zero waste in KV cache memory.\"",
+      "correction": ""
+    }
+  ]
+}

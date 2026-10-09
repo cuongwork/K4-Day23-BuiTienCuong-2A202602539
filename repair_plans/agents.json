@@ -1,0 +1,27 @@
+{
+  "description": "Repair source-number drift by paper identity. Preserve every word of the lead-generated report. ReAct and ToolSandbox require their original papers; survey claims require actual survey sources.",
+  "new_urls": [
+    "https://arxiv.org/abs/2210.03629",
+    "https://arxiv.org/abs/2408.04682",
+    "https://arxiv.org/html/2604.00835"
+  ],
+  "changes": [
+    {"anchor": "ReAct established the reason-act template", "urls": ["https://arxiv.org/abs/2210.03629", "https://proceedings.neurips.cc/paper_files/paper/2023/file/d842425e4bf79ba039352da0f658a906-Paper-Conference.pdf", "https://huggingface.co/papers/2503.04625"]},
+    {"anchor": "UltraTool, GTA, ToolSandbox, AgentRewardBench, and MCPToolBench++", "urls": ["https://arxiv.org/abs/2401.17167", "https://proceedings.neurips.cc/paper_files/paper/2024/file/8a75ee6d4b2eb0b777f549a32a5a5c28-Paper-Datasets_and_Benchmarks_Track.pdf", "https://arxiv.org/abs/2408.04682", "https://huggingface.co/papers/2504.08942", "https://huggingface.co/papers/2508.07575"]},
+    {"anchor": "START uses hint-based tool activation and rejection-based self-training", "urls": ["https://huggingface.co/papers/2503.04625", "https://proceedings.neurips.cc/paper_files/paper/2023/file/d842425e4bf79ba039352da0f658a906-Paper-Conference.pdf"]},
+    {"anchor": "This taxonomy is useful because the field now spans", "urls": ["https://arxiv.org/html/2406.05804", "https://arxiv.org/html/2604.00835"]},
+    {"anchor": "The foundational ReAct formulation made this coupling explicit", "urls": ["https://arxiv.org/abs/2210.03629"]},
+    {"anchor": "One survey frames tool use, planning, and feedback learning", "urls": ["https://arxiv.org/html/2406.05804", "https://arxiv.org/html/2604.00835"]},
+    {"anchor": "It also includes how models are trained to observe, decide, act", "urls": ["https://arxiv.org/html/2406.05804", "https://arxiv.org/html/2604.00835"]},
+    {"anchor": "UltraTool was built because existing benchmarks", "urls": ["https://arxiv.org/abs/2401.17167"]},
+    {"anchor": "GTA makes a similar argument from another angle", "urls": ["https://proceedings.neurips.cc/paper_files/paper/2024/file/8a75ee6d4b2eb0b777f549a32a5a5c28-Paper-Datasets_and_Benchmarks_Track.pdf"]},
+    {"anchor": "ToolSandbox emphasizes stateful tool execution", "urls": ["https://arxiv.org/abs/2408.04682"]},
+    {"anchor": "AgentRewardBench shifts attention to automatic evaluation", "urls": ["https://huggingface.co/papers/2504.08942"]},
+    {"anchor": "MCPToolBench++ targets the emerging Model Context Protocol ecosystem", "urls": ["https://huggingface.co/papers/2508.07575"]},
+    {"anchor": "It includes planning, state tracking, multimodal perception, and reliable scoring", "urls": ["https://arxiv.org/abs/2401.17167", "https://proceedings.neurips.cc/paper_files/paper/2024/file/8a75ee6d4b2eb0b777f549a32a5a5c28-Paper-Datasets_and_Benchmarks_Track.pdf", "https://arxiv.org/abs/2408.04682", "https://huggingface.co/papers/2504.08942", "https://huggingface.co/papers/2508.07575"]},
+    {"anchor": "It also connects to the evaluation emphasis on state, latency, and interaction history", "urls": ["https://huggingface.co/papers/2605.27995", "https://arxiv.org/abs/2408.04682"]},
+    {"anchor": "On the evaluation side, benchmarks increasingly reject simplified settings", "urls": ["https://proceedings.neurips.cc/paper_files/paper/2024/file/8a75ee6d4b2eb0b777f549a32a5a5c28-Paper-Datasets_and_Benchmarks_Track.pdf", "https://arxiv.org/abs/2401.17167", "https://arxiv.org/abs/2408.04682"]},
+    {"anchor": "Several benchmarks warn that existing protocols undercount success", "urls": ["https://huggingface.co/papers/2504.08942", "https://proceedings.neurips.cc/paper_files/paper/2024/file/8a75ee6d4b2eb0b777f549a32a5a5c28-Paper-Datasets_and_Benchmarks_Track.pdf", "https://arxiv.org/abs/2408.04682"]},
+    {"anchor": "The literature therefore points toward richer interaction data", "urls": ["https://arxiv.org/html/2406.05804", "https://arxiv.org/html/2604.00835", "https://huggingface.co/papers/2605.27995", "https://huggingface.co/papers/2605.09252"]}
+  ]
+}

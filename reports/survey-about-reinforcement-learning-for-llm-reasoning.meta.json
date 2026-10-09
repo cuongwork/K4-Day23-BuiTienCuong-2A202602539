@@ -1,0 +1,49 @@
+{
+  "topic": "survey about reinforcement learning for LLM reasoning",
+  "model": "openai:gpt-5.4-mini",
+  "elapsed_s": 148.4,
+  "subagent_calls": 12,
+  "researcher_calls": 3,
+  "citation_checker_calls": 9,
+  "tool_calls": {
+    "write_todos": 2,
+    "task": 12,
+    "read_file": 4,
+    "write_file": 3,
+    "execute": 6,
+    "edit_file": 4
+  },
+  "tokens": {
+    "input": 335791,
+    "output": 8033
+  },
+  "n_sources": 14,
+  "source_families": [
+    "hf-daily",
+    "hf-search",
+    "web"
+  ],
+  "citation_audit": [
+    {
+      "claim": "DeepSeek-R1 uses reinforcement learning and multi-stage training to enhance reasoning capabilities [4].",
+      "url": "https://huggingface.co/papers/2501.12948",
+      "verdict": "SUPPORTED",
+      "evidence": "Abstract states: \"DeepSeek-R1-Zero and DeepSeek-R1 utilize reinforcement learning and multi-stage training to enhance reasoning capabilities...\"",
+      "correction": ""
+    },
+    {
+      "claim": "The NeurIPS RLVR paper describes RLVR as leveraging outcome-based feedback, and REASONING GYM as providing over 100 data generators and verifiers spanning domains including algebra, arithmetic, computation, cognition, geometry, graph theory, logic, and common games [11].",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2025/file/528d56195a2c77c808494c86fa7c77ad-Paper-Datasets_and_Benchmarks_Track.pdf",
+      "verdict": "SUPPORTED",
+      "evidence": "The source states: \"At the heart of this progress is Reinforcement Learning with Verifiable Rewards (RLVR) [36, 19], which leverages outcome-based feedback to unlock open-ended reasoning processes...\" and \"We introduce REASONING GYM (RG), a library of reasoning environments for reinforcement learning with verifiable rewards. It provides over 100 data generators and verifiers spanning multiple domains including algebra, arithmetic, computation, cognition, geometry, graph theory, logic, and various common games.\"",
+      "correction": ""
+    },
+    {
+      "claim": "Similarly, \"Local Look-Ahead Guidance via Verifier-in-the-Loop\" uses Lean as a verifier and provides intermediate feedback on tactic applicability and on the number of remaining unsolved goals [9].",
+      "url": "https://aclanthology.org/2025.findings-acl.825.pdf",
+      "verdict": "SUPPORTED",
+      "evidence": "The paper states: \"Using Lean as the verifier, we empirically show that the step-by-step local verification produces a global improvement...\" and later: \"The reward consists of a negative return for invalid tactics, a positive one for applicable tactics, and a return based on the number of remaining unsolved goals.\" It also says the framework \"obtains feedback on the generated tactics directly via its interaction with the Lean software\".",
+      "correction": ""
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "topic": "survey about LLM agents and tool use",
+  "model": "openai:gpt-5.4-mini",
+  "elapsed_s": 196.8,
+  "subagent_calls": 18,
+  "researcher_calls": 3,
+  "citation_checker_calls": 15,
+  "tool_calls": {
+    "write_todos": 2,
+    "task": 18,
+    "read_file": 7,
+    "write_file": 4,
+    "execute": 6,
+    "edit_file": 3
+  },
+  "tokens": {
+    "input": 433085,
+    "output": 9180
+  },
+  "n_sources": 9,
+  "source_families": [
+    "hf-daily",
+    "hf-search",
+    "web"
+  ],
+  "citation_audit": [
+    {
+      "claim": "The paper page for START reports that START integrates external tools into large reasoning models using Hint-infer and Hint Rejection Sampling Fine-Tuning [3].",
+      "url": "https://huggingface.co/papers/2503.04625",
+      "verdict": "SUPPORTED",
+      "evidence": "The paper page abstract says: \"START integrates external tools into large reasoning models ... using techniques like Hint-infer and Hint Rejection Sampling Fine-Tuning.\"",
+      "correction": ""
+    },
+    {
+      "claim": "UltraTool was built because existing benchmarks often use simple synthesized queries and do not reflect real-world complexity; it instead covers planning, creation, and usage across many tools and domains [6].",
+      "url": "https://arxiv.org/abs/2401.17167",
+      "verdict": "SUPPORTED",
+      "evidence": "The abstract says existing benchmarks \"typically focus on simple synthesized queries that do not reflect real-world complexity\" and \"To address this issue, we present UltraTool.\" It also says UltraTool focuses on \"the entire process of using tools - from planning and creating to applying them in complex tasks.\"",
+      "correction": ""
+    },
+    {
+      "claim": "The HF-search result on LLM Agents Already Know When to Call Tools -- Even Without Reasoning reports a benchmark that identifies conditions under which tool calls are necessary and finds a gap between latent prediction and actual execution [1].",
+      "url": "https://huggingface.co/papers/2605.09252",
+      "verdict": "SUPPORTED",
+      "evidence": "The page states: \"When2Tool benchmark identifies conditions under which tool calls are necessary\" and that \"tool necessity is linearly decodable from the pre-generation representation ... This reveals that models already know when tools are needed, but fail to act on this knowledge during generation.\"",
+      "correction": ""
+    }
+  ]
+}

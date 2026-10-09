@@ -1,0 +1,90 @@
+[
+  {
+    "n": 1,
+    "id": "https://research.nvidia.com/labs/toronto-ai/VideoLDM/",
+    "url": "https://research.nvidia.com/labs/toronto-ai/VideoLDM/",
+    "title": "High-Resolution Video Synthesis with Latent Diffusion Models",
+    "date": "undated",
+    "source": "web"
+  },
+  {
+    "n": 2,
+    "id": "https://dl.acm.org/doi/full/10.1145/3696415",
+    "url": "https://dl.acm.org/doi/full/10.1145/3696415",
+    "title": "A Survey on Video Diffusion Models - ACM Digital Library",
+    "date": "2024-11-07",
+    "source": "web"
+  },
+  {
+    "n": 3,
+    "id": "https://arxiv.org/html/2312.04557v1",
+    "url": "https://arxiv.org/html/2312.04557v1",
+    "title": "Delving Deep into Diffusion Transformers for Image and Video Generation",
+    "date": "undated",
+    "source": "web"
+  },
+  {
+    "n": 4,
+    "id": "2401.09962",
+    "url": "https://huggingface.co/papers/2401.09962",
+    "title": "CustomVideo: Customizing Text-to-Video Generation with Multiple Subjects",
+    "date": "2024-01-18",
+    "source": "hf-daily"
+  },
+  {
+    "n": 5,
+    "id": "2608.14043",
+    "url": "https://arxiv.org/abs/2608.14043",
+    "title": "Beyond Text Conditioning: A Systematic Study of MLLM-DiT Fusion for Video Generation",
+    "date": "2026-08-14",
+    "source": "arxiv"
+  },
+  {
+    "n": 6,
+    "id": "2507.16869",
+    "url": "https://huggingface.co/papers/2507.16869",
+    "title": "Controllable Video Generation: A Survey",
+    "date": "2025-07-22",
+    "source": "hf-search"
+  },
+  {
+    "n": 7,
+    "id": "2312.02919",
+    "url": "https://huggingface.co/papers/2312.02919",
+    "title": "Fine-grained Controllable Video Generation via Object Appearance and Context",
+    "date": "2023-12-05",
+    "source": "hf-search"
+  },
+  {
+    "n": 8,
+    "id": "https://link.springer.com/article/10.1186/s40537-025-01314-3",
+    "url": "https://link.springer.com/article/10.1186/s40537-025-01314-3",
+    "title": "Text-to-video generators: a comprehensive survey | Journal of Big Data | Springer Nature Link",
+    "date": "2025-11-14",
+    "source": "web"
+  },
+  {
+    "n": 9,
+    "id": "https://dl.acm.org/doi/10.1145/3728633",
+    "url": "https://dl.acm.org/doi/10.1145/3728633",
+    "title": "AI-Generated Content (AIGC) for Various Data Modalities: A Survey | ACM Computing Surveys",
+    "date": "2025-05-06",
+    "source": "web"
+  },
+  {
+    "n": 10,
+    "id": "2502.01719",
+    "url": "https://huggingface.co/papers/2502.01719",
+    "title": "MJ-VIDEO: Fine-Grained Benchmarking and Rewarding Video Preferences in Video Generation",
+    "date": "2025-02-03",
+    "source": "hf-search"
+  },
+  {
+    "n": 11,
+    "id": "https://arxiv.org/abs/2311.17982",
+    "url": "https://arxiv.org/abs/2311.17982",
+    "title": "VBench: Comprehensive Benchmark Suite for Video Generative Models",
+    "date": "2023-11-29",
+    "source": "web"
+  }
+]

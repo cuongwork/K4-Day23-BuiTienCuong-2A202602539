@@ -1,0 +1,57 @@
+# Reinforcement Learning for LLM Reasoning: A Survey of Objectives, Rewards, and Evaluation
+
+## TL;DR
+- Early RL for language models used preference data, reward models, and PPO to optimize helpfulness; reasoning-focused work increasingly replaces preference rewards with verifiable outcomes or structured process rewards [1][2].
+- Recent systems such as o1 and DeepSeek-R1 emphasize training-time reasoning, multi-stage pipelines, and verifiable rewards, with math and coding as recurring evaluation domains [3][4][5].
+- A central design question is credit assignment: newer methods move from coarse sequence-level rewards toward step-wise or verifier-in-the-loop signals, while critiques warn that RL may mostly reshape output distributions rather than create fundamentally new reasoning ability [6][7][8][9][10].
+- The literature now spans outcome verification, process verification, and reward-model refinement, but benchmark choice and verifier quality remain major sources of variance [11][12][13][14].
+
+## Background
+Reinforcement learning for LLM reasoning is best understood against the original RLHF pipeline. InstructGPT formalized a three-stage recipe: supervised fine-tuning, reward model training, and PPO on human preference comparisons [1][2]. That setup targeted generic instruction following and used a learned reward model rather than direct correctness checks. Later reasoning-oriented work changed the training signal. Instead of optimizing for human preference alone, it increasingly trains on verifiable tasks where the final answer can be checked by rules, unit tests, theorem provers, or exact-match criteria [11][9][12].
+
+This shift is visible in recent system-level reports. OpenAI o1 is described as a reasoning model trained to spend more time thinking before responding, with strong emphasis on math and coding [3]. DeepSeek-R1 uses reinforcement learning and multi-stage training to enhance reasoning capabilities [4]. A recent survey of large reasoning models summarizes the field around RLVR, training data, and infrastructure, suggesting that the topic has matured from a single algorithmic recipe into a family of training and evaluation practices [5].
+
+## From preference optimization to reasoning optimization
+The older RLHF baseline optimizes a reward model learned from pairwise comparisons and then uses PPO with KL control [1][2]. This objective is suitable when the target is broad helpfulness, but it is only indirectly tied to reasoning quality. Reasoning-focused RL alters both the reward and the policy update. DeepSeek-R1 uses GRPO and a reward defined by correctness of final predictions, with rule-based signals for math, coding, and logic [4][4]. In this setting, the model is encouraged to generate reasoning traces because the reward is attached to answer correctness rather than to stylistic preference.
+
+Recent work also explores whether the optimization itself needs to change. GRPO-λ argues that standard GRPO has coarse credit assignment because it lacks an explicit critic, and proposes eligibility traces to spread sequence-level reward back to relevant tokens [13]. This is important for reasoning because a correct final answer can depend on a small subset of intermediate steps, while many other tokens are neutral or misleading. The broader implication is that reasoning RL is not only about better verifiers; it is also about better temporal assignment of reward across the chain of thought.
+
+## Verifiable rewards and process supervision
+The strongest trend in the last two years is the move toward verifiable rewards. The NeurIPS RLVR paper describes RLVR as leveraging outcome-based feedback, and REASONING GYM as providing over 100 data generators and verifiers spanning domains including algebra, arithmetic, computation, cognition, geometry, graph theory, logic, and common games [11]. Its emphasis on algorithmically verifiable environments is important because it turns training data into an effectively unlimited stream of checked examples. This is qualitatively different from RLHF, where reward is sparse, subjective, and expensive to collect.
+
+Process supervision pushes the idea further. "Let's Reinforce Step by Step" links RLHF with process-supervised reward models and claims that intermediate-step rewards can improve simple mathematical reasoning while hurting more complex tasks [6]. That tension matters: a reward attached to steps may help local search and short derivations, yet overconstrain exploration when tasks require longer-horizon reasoning. Similarly, "Local Look-Ahead Guidance via Verifier-in-the-Loop" uses Lean as a verifier and provides intermediate feedback on tactic applicability and on the number of remaining unsolved goals [9]. This is a clear example of reward at the level of action sequences rather than only final answers.
+
+Structured reasoning work extends the same principle to non-math domains. "Beyond Outcome Verification" contrasts exact-match or unit-test style outcome verification with verifiable process reward models based on deterministic rule checks for intermediate steps [12]. Although the application is medical structured reasoning, the design principle generalizes: if the intermediate reasoning state can be checked, the reward can be made more informative than a final label alone.
+
+## Recent systems and the changing role of RL
+System-level recent work suggests that RL is now one component in a larger reasoning stack rather than a standalone solution. OpenAI o1 is presented as a reasoning model trained to refine its thinking process and to spend more time before responding [3]. The corresponding public framing is consistent with post-training methods that pair RL with test-time deliberation rather than with one-shot decoding. DeepSeek-R1 is similar in spirit but more explicit about the role of verifiable rewards and multi-stage training [4][4].
+
+A useful counterpoint is the recent HF-search summary asking whether RL really incentivizes new reasoning capacity beyond the base model [10]. Its summary argues that RL with verifiable rewards may mainly bias the policy toward rewarded paths. This is a cautious interpretation, but it is analytically valuable because it separates capability creation from capability selection. Under that view, RL may expose reasoning patterns that are already latent in the model, rather than inventing them from scratch.
+
+Small-model work shows that this debate is not limited to frontier systems. "Reinforcement Learning for Reasoning in Small LLMs" reports that RL can improve mathematical reasoning even under resource constraints [14]. That matters for survey purposes because it suggests the same design questions recur across scales: reward fidelity, compute budget, and whether the model can exploit the reward signal without overfitting it.
+
+## Evaluation: what counts as reasoning progress?
+Evaluation in this literature is still heterogeneous. Some papers use external accuracy on math or coding tasks, while theorem-proving papers prefer pass@N and benchmark suites such as MiniF2F-test or LeanDojo-style environments [8][9]. The RLVR paper notes broader evaluation across standard harnesses and external benchmarks such as GSM8K, MATH, Big-Bench Hard, and MMLU-Pro [11]. This variety complicates comparison because a method that helps exact-match accuracy may not help search diversity or proof completeness.
+
+The most informative evaluation setups are those that measure both final correctness and the quality of intermediate reasoning. "Rewarding the Unlikely" reports a perfect verifier in theorem proving and emphasizes that a method can improve single-sample accuracy without improving pass@N [8]. That distinction is useful for reasoning RL more generally: a reward may make the most likely answer better while shrinking diversity, which can hurt multi-sample search. The structured-reasoning work on verifiable process rewards adds a coherence metric to assess whether the final label aligns with the intermediate trace [12]. Such metrics are promising because they capture not only correctness but also trace validity.
+
+## Trends and open problems
+Three trends stand out. First, reasoning RL is converging on verifiability. The field increasingly prefers exact checks, theorem provers, code execution, or other deterministic verifiers over subjective preference models [4][11][9][12]. Second, credit assignment is becoming more fine-grained. GRPO variants, process rewards, and verifier-in-the-loop methods all try to make reward denser along the reasoning trajectory [6][9][13]. Third, evaluation is moving beyond a single benchmark score toward pass@N, coherence, and benchmark suites that probe multiple reasoning domains [11][8][12].
+
+Open problems remain substantial. Verifiers can be brittle, and a strong verifier may be unavailable outside math, code, or closed structured domains [11][9][12]. Process rewards can also overconstrain search or fail on long-horizon reasoning [6]. More fundamentally, the literature still lacks consensus on whether RL creates new reasoning ability or mainly reallocates probability mass toward already-available solution paths [10]. Future work should therefore compare training objectives under matched verifiers, report both single-sample and multi-sample metrics, and disclose enough reward details to make cross-paper comparison meaningful [7][11][13][14].
+
+## References
+[1] [2203.02155] Training language models to follow instructions with human feedback. web. https://arxiv.org/abs/2203.02155 (2022-03-04)
+[2] [PDF] Training language models to follow instructions with human .... web. https://cdn.openai.com/papers/Training_language_models_to_follow_instructions_with_human_feedback.pdf (undated)
+[3] Introducing OpenAI o1 | OpenAI. web. https://openai.com/index/introducing-openai-o1-preview/ (2024-09-12)
+[4] DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning. hf-daily. https://huggingface.co/papers/2501.12948 (2025-01-22)
+[5] A Survey of Reinforcement Learning for Large Reasoning Models. web. https://arxiv.org/abs/2509.08827 (undated)
+[6] Let's Reinforce Step by Step. hf-search. https://huggingface.co/papers/2311.05821 (2023-11-10)
+[7] On Designing Effective RL Reward at Training Time for LLM Reasoning. hf-search. https://huggingface.co/papers/2410.15115 (2024-10-19)
+[8] Rewarding the Unlikely: Lifting GRPO Beyond Distribution Sharpening. web. https://aclanthology.org/2025.emnlp-main.1298.pdf (undated)
+[9] Local Look-Ahead Guidance via Verifier-in-the-Loop for Automated Theorem Proving. web. https://aclanthology.org/2025.findings-acl.825.pdf (undated)
+[10] Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?. hf-search. https://huggingface.co/papers/2504.13837 (2025-04-18)
+[11] Reinforcement Learning with Verifiable Rewards. web. https://proceedings.neurips.cc/paper_files/paper/2025/file/528d56195a2c77c808494c86fa7c77ad-Paper-Datasets_and_Benchmarks_Track.pdf (undated)
+[12] Beyond Outcome Verification: Verifiable Process Reward Models for Structured Reasoning. web. https://aclanthology.org/2026.findings-acl.1611.pdf (undated)
+[13] GRPO-𝜆 : Credit Assignment improves LLM Reasoning. web. https://arxiv.org/html/2510.00194 (undated)
+[14] Reinforcement Learning for Reasoning in Small LLMs: What Works and What Doesn't. hf-search. https://huggingface.co/papers/2503.16219 (2025-03-20)

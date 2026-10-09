@@ -1,0 +1,51 @@
+{
+  "topic": "survey about video and multimodal generation",
+  "model": "openai:gpt-5.4-mini",
+  "elapsed_s": 166.3,
+  "subagent_calls": 11,
+  "researcher_calls": 3,
+  "citation_checker_calls": 8,
+  "tool_calls": {
+    "write_todos": 2,
+    "task": 11,
+    "read_file": 5,
+    "ls": 1,
+    "execute": 5,
+    "write_file": 3,
+    "edit_file": 1
+  },
+  "tokens": {
+    "input": 303747,
+    "output": 7885
+  },
+  "n_sources": 11,
+  "source_families": [
+    "arxiv",
+    "hf-daily",
+    "hf-search",
+    "web"
+  ],
+  "citation_audit": [
+    {
+      "claim": "A latent-diffusion line of work showed a practical route by pretraining image generators, then extending them into video generators with temporal modules and video fine-tuning [1].",
+      "url": "https://research.nvidia.com/labs/toronto-ai/VideoLDM/",
+      "verdict": "SUPPORTED",
+      "evidence": "The page states: \"We first pre-train an LDM on images only; then, we turn the image generator into a video generator by introducing a temporal dimension to the latent space diffusion model and fine-tuning on encoded image sequences, i.e., videos.\" It also says they \"insert temporal layers\" and \"fine-tune the model's decoder for video generation.\"",
+      "correction": ""
+    },
+    {
+      "claim": "The literature on controllable video generation has broadened the input space substantially.",
+      "url": "https://huggingface.co/papers/2507.16869",
+      "verdict": "SUPPORTED",
+      "evidence": "The abstract says recent research has explored the integration of additional non-textual conditions, such as camera motion, depth maps, and human pose, to extend pretrained video generation models and enable more controllable video synthesis.",
+      "correction": ""
+    },
+    {
+      "claim": "VBench is important because it states that Inception Score, FID, FVD, and CLIPSIM are inconsistent with human judgment, and it proposes a hierarchical benchmark with separate dimensions for video quality and video-condition consistency [11].",
+      "url": "https://arxiv.org/abs/2311.17982",
+      "verdict": "SUPPORTED",
+      "evidence": "The abstract/introduction says existing metrics such as Inception Score (IS), FID, FVD, and CLIPSIM are inconsistent with human judgement, and it says VBench uses a hierarchical and disentangled approach with two primary dimensions: Video Quality and Video-Condition Consistency.",
+      "correction": ""
+    }
+  ]
+}

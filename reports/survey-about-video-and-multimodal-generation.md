@@ -1,0 +1,47 @@
+# Video and Multimodal Generation: Training, Control, and Evaluation
+
+## TL;DR
+- Video generation has moved from image-first latent diffusion systems toward diffusion transformers and other transformer-based backbones, with temporal layers added to preserve motion coherence [1][2][3].
+- Conditioning has expanded from text prompts to multimodal control signals such as masks, reference images, pose, depth, camera motion, trajectories, audio, and MLLM-derived semantic plans [4][2][5][6][7][8][9].
+- Recent surveys and benchmark papers agree that video evaluation remains fragmented: common metrics often diverge from human judgment, so multi-dimensional benchmarks and preference-based rewards have become important [10][11].
+- Hugging Face daily and search results provide useful recent evidence of both customization methods and emerging preference/reward work in video generation [4][10].
+
+## Background
+Early video synthesis systems increasingly adopted diffusion after GAN-based and autoregressive approaches proved difficult to scale to long temporal sequences. A latent-diffusion line of work showed a practical route by pretraining image generators, then extending them into video generators with temporal modules and video fine-tuning [1]. Later surveys describe the field as consolidating around diffusion because it offers a comparatively robust and scalable training objective for high-dimensional video generation [2]. More recent diffusion-transformer work treats temporal self-attention as a core design choice and studies how transformer conditioning mechanisms affect video quality and motion structure [3]. These sources indicate that the main technical challenge is not only visual fidelity, but also temporal consistency under longer horizons [1][2][3].
+
+## Training objectives and backbone design
+Across the surveyed sources, diffusion remains the dominant objective family, but the architectural locus of control has changed. VideoLDM-style systems extend latent diffusion with temporal attention and 3D convolutions, while keeping the generation process in a compressed latent space to reduce cost [1]. A broader survey distinguishes pixel-based from latent-based video diffusion and notes that both U-Net and transformer backbones are used in practice [2]. The same survey also records a shift from purely text-conditioned systems toward models that combine text with structured controls [2].
+
+Transformer-based diffusion is now an important alternative. The diffusion-transformer study of image and video generation compares adaptive layer norm and cross-attention conditioning, and it adds temporal self-attention inside each transformer block for video [3]. This is conceptually important because it turns motion into an explicit internal modeling problem rather than a byproduct of 2D denoising. A later arXiv report on MLLM-DiT fusion further suggests that current systems increasingly rely on multimodal large language models as semantic planners rather than simple frozen encoders [5]. Together, these sources show a trajectory from diffusion as a general objective to diffusion-plus-transformer systems in which temporal structure and semantic planning are separately parameterized [1][2][5][3].
+
+## Multimodal conditioning and controllability
+The literature on controllable video generation has broadened the input space substantially. Survey evidence from Hugging Face describes a taxonomy of single-condition, multi-condition, and universal controllable generation, with controls including pose, depth, sketches, bounding boxes, motion trajectories, camera parameters, audio, identity, and multi-modal conditions [6]. The same survey-level framing appears in broader survey sources, which mention text, images, entity layouts, bounding boxes, and other multimodal inputs [2][8][9].
+
+Fine-grained control papers make this trend concrete. FACTOR targets object appearance and context through a joint encoder and adaptive cross-attention layers, showing that plug-in control can work without full retraining [7]. CustomVideo extends text-to-video generation to multi-subject customization by combining reference-image guidance, segmentation masks, and attention control in latent space [4]. These examples matter because they reveal a common design pattern: conditioning is no longer just “prompting,” but a structured mechanism that mediates identity, appearance, scene layout, and motion [4][7].
+
+Data scale and modality coverage are also central. Survey sources identify WebVid-10M, HD-VILA-100M, and HowTo100M as representative corpora for pretraining and fine-tuning, and they connect dataset breadth to temporal coherence and instruction alignment [8][9]. The surveys also note that multimodal frameworks integrate text, images, audio, and video references to improve grounding [8][9]. In practice, this means that recent progress depends as much on dataset design as on model architecture [8][9].
+
+## Evaluation, benchmarks, and reward signals
+Evaluation remains the least unified part of the field. VBench is important because it states that Inception Score, FID, FVD, and CLIPSIM are inconsistent with human judgment, and it proposes a hierarchical benchmark with separate dimensions for video quality and video-condition consistency [11]. It also uses human preference annotations and claims high correlation with those preferences, making it a foundational reference for benchmark design [11].
+
+More recent work pushes from evaluation toward reward modeling. MJ-BENCH-VIDEO is described as a large-scale video preference benchmark, and MJ-VIDEO is a mixture-of-experts reward model, which links fine-grained benchmarking to preference-based alignment signals [10]. That direction is consistent with survey-level claims that video alignment is hard because of motion-appearance coupling, error accumulation over time, and limited supervision for temporal properties [2]. The same survey literature organizes methods around preference feedback, reward functions, and verifiable criteria, but it also highlights the lack of a single unified reward signal for long-horizon video [2].
+
+Taken together, the evidence suggests that current evaluation is still multi-objective. Human-aligned benchmark suites, preference data, and learned reward models each capture part of the problem, but none fully resolves temporal consistency, instruction adherence, and perceptual realism at once [10][11].
+
+## Trends and open problems
+Three trends stand out. First, the field has converged on diffusion-based generation, but the practical frontier is now the choice of backbone and conditioning interface: latent diffusion, diffusion transformers, and MLLM-fused designs each trade off efficiency, controllability, and semantic reasoning [1][2][5][3]. Second, control signals are becoming richer and more compositional, moving from captions to structured inputs such as masks, depth, pose, motion trajectories, and reference images [4][6][7][8][9]. Third, evaluation is shifting from single-score fidelity metrics to benchmark suites and preference/reward modeling, because static similarity metrics do not reliably match human judgment for video [10][11].
+
+Several open problems remain. One is temporal robustness: many systems can produce plausible short clips, but surveys still identify long-horizon consistency as a persistent weakness [2]. Another is reward design: preference data helps, but verifiable reward functions for video remain limited, especially when models must satisfy multiple constraints at once [2][10]. A third is benchmark fragmentation: current evaluation schemes separate quality, consistency, and controllability, yet practical applications require joint assessment of all three [10][11]. Finally, multimodal planning is still under-specified. MLLM-based planning may improve semantics, but the evidence so far does not show a single best fusion strategy, and recent studies still treat the integration question as open [5].
+
+## References
+[1] High-Resolution Video Synthesis with Latent Diffusion Models. web. https://research.nvidia.com/labs/toronto-ai/VideoLDM/ (undated)
+[2] A Survey on Video Diffusion Models - ACM Digital Library. web. https://dl.acm.org/doi/full/10.1145/3696415 (2024-11-07)
+[3] Delving Deep into Diffusion Transformers for Image and Video Generation. web. https://arxiv.org/html/2312.04557v1 (undated)
+[4] CustomVideo: Customizing Text-to-Video Generation with Multiple Subjects. hf-daily. https://huggingface.co/papers/2401.09962 (2024-01-18)
+[5] Beyond Text Conditioning: A Systematic Study of MLLM-DiT Fusion for Video Generation. arxiv. https://arxiv.org/abs/2608.14043 (2026-08-14)
+[6] Controllable Video Generation: A Survey. hf-search. https://huggingface.co/papers/2507.16869 (2025-07-22)
+[7] Fine-grained Controllable Video Generation via Object Appearance and Context. hf-search. https://huggingface.co/papers/2312.02919 (2023-12-05)
+[8] Text-to-video generators: a comprehensive survey | Journal of Big Data | Springer Nature Link. web. https://link.springer.com/article/10.1186/s40537-025-01314-3 (2025-11-14)
+[9] AI-Generated Content (AIGC) for Various Data Modalities: A Survey | ACM Computing Surveys. web. https://dl.acm.org/doi/10.1145/3728633 (2025-05-06)
+[10] MJ-VIDEO: Fine-Grained Benchmarking and Rewarding Video Preferences in Video Generation. hf-search. https://huggingface.co/papers/2502.01719 (2025-02-03)
+[11] VBench: Comprehensive Benchmark Suite for Video Generative Models. web. https://arxiv.org/abs/2311.17982 (2023-11-29)

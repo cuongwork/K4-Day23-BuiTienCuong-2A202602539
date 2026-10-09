@@ -4,6 +4,73 @@ Lab dựng một **hệ thống deep research đa tác tử**: người dùng ch
 
 Hình thức: **bài thực hành cá nhân**. Ngôn ngữ lập trình: Python 3.11 trở lên.
 
+## Current validation status
+
+The implementation passes 30 offline tests. All five English surveys pass citation,
+structure, source-metadata, and citation-audit checks. `self_check.py` reports all
+five topics and the Git/secret checks as successful.
+
+The agents survey required a deterministic citation-only repair. A reviewed URL
+mapping corrected 17 citation groups and added three retrieved sources. The repair,
+reference finalization, audit-number synchronization, and validation ran inside the
+sandbox before download. The lead-generated prose, original checker verdicts, and
+supporting evidence were preserved. This repair used zero LLM calls. Its provenance
+is recorded in the report metadata; the original files remain in `reports_failed/`.
+The provided `model.py`, `sandbox.py`, `self_check.py`, and `finalize_citations.py`
+remain unchanged. No research report was edited manually.
+
+To reproduce the citation-only repair without calling an LLM:
+
+```powershell
+python repair_citations.py repair_plans/agents.json reports_failed/survey-about-llm-agents-and-tool-use
+python self_check.py
+```
+
+This command retrieves source pages through Exa on the host and uses the configured
+sandbox. The repair plan changes numbered citations only; it cannot rewrite prose.
+
+## Chạy bản triển khai này trên Windows
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python -m unittest -v test_lab
+python tools.py
+$env:LAB_MODEL = "openai:gpt-5.4-mini"
+$env:LAB_TEMPERATURE = ""
+$env:LAB_REASONING_EFFORT = "low"
+$env:LAB_USE_RESPONSES_API = "1"
+python research.py "survey about world model"
+python research.py "survey about reinforcement learning for LLM reasoning"
+python research.py "survey about LLM agents and tool use"
+python research.py "survey about video and multimodal generation"
+python research.py "survey about efficient inference and small language models"
+python self_check.py
+```
+
+Điền cấu hình của bạn vào `.env` theo `.env.example`. Mặc định dùng Daytona; đặt
+`SANDBOX=docker` nếu dùng Docker cục bộ. Không đưa `.env` lên Git.
+Các biến PowerShell trên chọn model và mức suy luận cho phiên terminal hiện tại;
+không sửa `.env`. Có thể dùng model khác hỗ trợ tool calling theo cấu hình của bạn.
+
+`test_lab.py` kiểm tra offline các quy tắc trích dẫn, retry, chuẩn hóa dữ liệu,
+che khóa, slug và lưu kết quả. Không gọi mạng hoặc tiêu token.
+
+Trong `reports/`, mỗi chủ đề có ba tệp cùng tên gốc: `.md` là báo cáo tiếng Anh,
+`.sources.json` là nguồn đã đối chiếu trích dẫn, `.meta.json` là thống kê lần chạy
+và kết quả kiểm tra mẫu khi có. Bộ đếm token chỉ bao gồm lead, không phải tổng
+chi phí toàn hệ thống. Báo cáo và nguồn được lưu nguyên bytes tải từ sandbox;
+finalizer và validator đều chạy trong sandbox trước khi tải về.
+`validate_audit.py` yêu cầu ba verdict `SUPPORTED` của citation-checker cho đúng
+câu trong báo cáo và ba URL nguồn cuối khác nhau. Audit JSON được lưu trong metadata.
+
+Lead được giới hạn 150 lần gọi model và 300 lần gọi tool; researcher được giới hạn
+40/60, citation-checker 20/30; graph của lead có `recursion_limit=1000`.
+Các lỗi kết nối, timeout, 429 và 5xx của model được retry tối đa 3 lần với backoff.
+Với OpenAI, mỗi yêu cầu có timeout 90 giây. Nếu kiểm tra cuối chưa đạt, lead có
+tối đa 2 lượt sửa trong cùng sandbox; mỗi lượt vẫn có các giới hạn trên.
+Lần chạy lỗi trả mã 1 và không lưu bộ báo cáo thiếu hoặc trích dẫn hỏng.
+
 ## 1. Mục tiêu học tập
 
 Sau lab, bạn có thể:
@@ -59,7 +126,7 @@ Lab/
 └── reports/                  báo cáo sinh ra (bạn commit vào repo nộp)
 ```
 
-Mỗi tệp "SINH VIÊN CÀI ĐẶT" là **pseudo-code chạy được** (import được): các hàm có docstring mô tả việc cần làm, các `TODO n` đánh số theo `GUIDE.md`, thân hàm đang `raise NotImplementedError`.
+Các tệp "SINH VIÊN CÀI ĐẶT" đã được triển khai theo hợp đồng trong `GUIDE.md`.
 
 ## 4. Cài đặt
 
@@ -100,6 +167,8 @@ Kết quả nằm ở `reports/survey-about-world-model.md` cùng `.sources.json
 - Cách chấm: xem [`RUBRIC.md`](RUBRIC.md).
 
 ## 7. Thời gian, chi phí và an toàn
+
+Metadata được ghi nhận từ kết quả công cụ phía host. `normalize_sources.py` đối chiếu từng URL với dữ liệu này trong sandbox, rồi chạy finalizer và validator trước khi tải kết quả. URL chưa được truy xuất sẽ yêu cầu lead sửa trong sandbox; báo cáo không được sửa tay sau khi tải. Validator cũng kiểm tra cấu trúc và trích dẫn cho từng đoạn nội dung.
 
 - Dùng một mô hình **rẻ nhưng hỗ trợ tool calling**, và **đặt giới hạn** (số lần gọi mô hình/công cụ cho lead và subagent, `recursion_limit`): một prompt hỏng có thể khiến agent lặp rất lâu. Đây là hạng mục 2.5 của `RUBRIC.md`.
 - Kết quả có tính ngẫu nhiên: cùng một mã có thể cho báo cáo hợp lệ ở lần này và trích dẫn lỗi ở lần sau. Hãy sửa **prompt và mã**, không sửa tay báo cáo.

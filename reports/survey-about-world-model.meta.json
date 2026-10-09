@@ -1,0 +1,50 @@
+{
+  "topic": "survey about world model",
+  "model": "openai:gpt-5.4-mini",
+  "elapsed_s": 154.0,
+  "subagent_calls": 13,
+  "researcher_calls": 4,
+  "citation_checker_calls": 9,
+  "tool_calls": {
+    "write_todos": 1,
+    "task": 13,
+    "read_file": 8,
+    "write_file": 3,
+    "execute": 8,
+    "edit_file": 3
+  },
+  "tokens": {
+    "input": 368162,
+    "output": 8077
+  },
+  "n_sources": 11,
+  "source_families": [
+    "arxiv",
+    "hf-daily",
+    "hf-search",
+    "web"
+  ],
+  "citation_audit": [
+    {
+      "claim": "Genie extends this idea toward interactive video worlds: the paper describes unsupervised training from unlabelled video, spatiotemporal tokenization, autoregressive dynamics, and frame-by-frame interaction via a latent action model [4].",
+      "url": "https://huggingface.co/papers/2402.15391",
+      "verdict": "SUPPORTED",
+      "evidence": "The abstract says Genie is \"the first generative interactive environment trained in an unsupervised manner from unlabelled Internet videos.\" It also states the model is \"comprised of a spatiotemporal video tokenizer, an autoregressive dynamics model, and a simple and scalable latent action model,\" and that \"Genie enables users to act in the generated environments on a frame-by-frame basis.\"",
+      "correction": ""
+    },
+    {
+      "claim": "WorldPrediction uses discriminative multiple-choice tests to distinguish the correct action or action sequence from counterfactual distractors, and separates single-step world-model judgment from long-horizon procedural planning [8].",
+      "url": "https://arxiv.org/abs/2506.04363",
+      "verdict": "SUPPORTED",
+      "evidence": "The abstract says: \"Given initial and final world states, the task is to distinguish the proper action (WorldPrediction-WM) or the properly ordered sequence of actions (WorldPrediction-PP) from a set of counterfactual distractors.\" It also says WorldPrediction is \"a video-based benchmark for evaluating world modeling and procedural planning\" and introduces two sub-benchmarks, WorldPrediction-WM and WorldPrediction-PP.",
+      "correction": ""
+    },
+    {
+      "claim": "The retrieved evidence presents Genie as the first generative interactive environment and a foundation world model [5].",
+      "url": "https://proceedings.mlr.press/v235/bruce24a.html",
+      "verdict": "SUPPORTED",
+      "evidence": "The abstract states: \"We introduce Genie, the first generative interactive environment...\" and later: \"At 11B parameters, Genie can be considered a foundation world model.\"",
+      "correction": ""
+    }
+  ]
+}
